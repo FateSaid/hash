@@ -52,6 +52,12 @@ function HashMap() {
     if (index < 0 || index >= capacity) {
       throw new Error("Trying to access index out of bound");
     }
+    if (has(key)) {
+      delete array[index];
+      return true;
+    } else {
+      return false;
+    }
   }
 
   return {
@@ -59,6 +65,7 @@ function HashMap() {
     array,
     get,
     has,
+    remove,
   };
 }
 
@@ -69,4 +76,6 @@ test.set("banana", "yellow");
 
 console.log(test.array);
 
-console.log(test.get("apple"));
+console.log(test.remove("banana"));
+
+console.log(test.array);
