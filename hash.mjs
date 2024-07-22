@@ -22,11 +22,18 @@ function HashMap() {
       throw new Error("Trying to access index out of bound");
     }
 
+    if (has(key)) {
+      let entries = array[index].head;
+      while (entries.key !== key) {
+        entries = entries.nextNode;
+      }
+      return (entries.value = value);
+    }
+
     if (array[index] !== undefined) {
       return array[index].append(value);
     }
-    if (has(key)) {
-    }
+
     let link = new LinkedList();
     link.prepend(key, value);
     array[index] = link;
@@ -113,7 +120,7 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
-test.set("banana", "tawny yellow");
+test.set("apple", "tawny yellow");
 
 console.log(test.array);
 console.log(test.length());
