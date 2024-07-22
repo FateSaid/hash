@@ -5,7 +5,7 @@ function HashMap() {
   let array = [];
 
   let capacity = 16;
-  let loadFactor = 0.8;
+  let loadFactor = 0.75;
 
   function hash(key) {
     let hashCode = 0;
@@ -24,6 +24,8 @@ function HashMap() {
 
     if (array[index] !== undefined) {
       return array[index].append(value);
+    }
+    if (has(key)) {
     }
     let link = new LinkedList();
     link.prepend(key, value);
@@ -59,6 +61,29 @@ function HashMap() {
       return false;
     }
   }
+  function length() {
+    let arrayMap = array.filter((element) => typeof element === "object");
+    return arrayMap.reduce((a, b) => a + b.size, 0);
+  }
+
+  function clear() {
+    for (let i = 0; i < array.length; i++) {
+      delete array[i];
+    }
+  }
+  function keys() {
+    let arrayMap = array.filter((element) => typeof element === "object");
+    return arrayMap.map((item) => item.head.key);
+  }
+  function values() {
+    let arrayMap = array.filter((element) => typeof element === "object");
+    return arrayMap.map((item) => item.head.value);
+  }
+
+  function entries() {
+    let arrayMap = array.filter((element) => typeof element === "object");
+    return arrayMap.map((item) => [item.head.key, item.head.value]);
+  }
 
   return {
     set,
@@ -66,6 +91,11 @@ function HashMap() {
     get,
     has,
     remove,
+    length,
+    clear,
+    keys,
+    values,
+    entries,
   };
 }
 
@@ -73,9 +103,17 @@ const test = HashMap();
 
 test.set("apple", "red");
 test.set("banana", "yellow");
+test.set("carrot", "orange");
+test.set("dog", "brown");
+test.set("elephant", "gray");
+test.set("frog", "green");
+test.set("grape", "purple");
+test.set("hat", "black");
+test.set("ice cream", "white");
+test.set("jacket", "blue");
+test.set("kite", "pink");
+test.set("lion", "golden");
+test.set("banana", "tawny yellow");
 
 console.log(test.array);
-
-console.log(test.remove("banana"));
-
-console.log(test.array);
+console.log(test.length());

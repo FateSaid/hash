@@ -1,5 +1,5 @@
 //node for linked-list
 
-export function Node(key, value, next = null) {
-  return { key, value, next };
+export function Node(key, value, nextNode = null) {
+  return { key, value, nextNode };
 }
