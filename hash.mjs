@@ -6,6 +6,11 @@ function HashMap() {
 
   let capacity = 16;
   let loadFactor = 0.75;
+  if (capacity * loadFactor > 12) {
+    capacity *= 2;
+    let data = entries();
+    array = data.forEach((element) => set(element[0], element[1]));
+  }
 
   function hash(key) {
     let hashCode = 0;
@@ -120,7 +125,6 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
-test.set("apple", "tawny yellow");
+test.set("moon", "silver");
 
 console.log(test.array);
-console.log(test.length());
